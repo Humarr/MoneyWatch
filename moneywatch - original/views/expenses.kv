@@ -1,0 +1,94 @@
+#: import Text widgets.label.Text
+#: import Circle widgets.circles.Circle
+#: import MyTextField widgets.field.MyTextField
+#: import IconButton widgets.button.IconButton
+#: import FlatButton widgets.button.FlatButton
+# : import RoundImage widgets.img.RoundImage
+
+
+<ExpenseList2>
+    md_bg_color: app.colors.white
+    elevation: 3
+    size_hint_y:.05
+    radius: [20]
+    text: root.amount
+    secondary_text: root.category + ": " + root.item
+    tertiary_text: root.date
+    font_style: "H6"
+    theme_text_color: "Custom"
+    text_color: app.colors.warning
+    secondary_font_style: "Body1"
+    secondary_theme_text_color: "Custom"
+    secondary_text_color: app.colors.orange
+    tertiary_font_style: "Caption"
+    tertiary_theme_text_color: "Custom"
+    # tertiary_text_color: app.colors.warning
+    font_name: app.fonts.heading
+    _no_ripple_effect: True
+    # _font_size: "20sp"
+    # _height: "120dp"
+    IconLeftWidgetWithoutTouch:
+        icon: root.icon
+        # icon: "food"
+
+
+
+<ExpensesScreen>
+    md_bg_color: app.colors.white
+    IconButton:
+        # id: percentag
+        icon:"arrow-left"
+        pos_hint: {'top': .99}
+        text_color: app.colors.primary
+        # size_hint_x: .5
+        # font_name: app.fonts.heading
+        font_size:app.fonts.size.h5
+        on_press: app.change_screen("home")
+    MyTextField:
+        id: search
+        # text: ""
+        hint_text: "e.g Dec, 2022"
+        mode: "line"
+        active_line: True
+        size_hint_x:.5
+        pos_hint: {"center_x":.45, "center_y":.927}
+        icon_right: "magnify"
+        on_text:
+            root.on_typing(self.text)
+            # root.search(self.text)
+    IconButton:
+        icon: "reload"
+        icon_color: app.colors.primary
+        icon_size: app.fonts.size.icon
+        pos_hint: {"center_x":.8, "center_y":.94}
+        on_press: root.search(search.text)
+
+
+    Text:
+        id: date_expense
+        text: "Expenses for Dec, 2022"
+        pos_hint: {"center_x":.55, "center_y":.85}
+        font_name: app.fonts.heading
+        font_size: app.fonts.size.h3
+
+    MDScrollView:
+        id: scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint_y: .8
+        pos_hint: {'center_x': 0.5,'center_y':.41}
+        bar_width: 2
+        # md_bg_color: app.colors.primary
+
+        # MDSelectionList:
+        #     size_hint_y: scroll_view.height
+            # padding: "24dp", 0, "24dp", "24dp"
+        GridLayout:
+            md_bg_color: app.colors.yellow
+            id: expense_container
+            cols: 1
+            height: self.minimum_height
+            row_default_height:'90dp'
+            size_hint_y: None
+            padding: '15dp','10dp'
+            spacing: '15dp','10dp'

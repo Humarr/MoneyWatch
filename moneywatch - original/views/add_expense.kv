@@ -1,0 +1,77 @@
+#: import Text widgets.label.Text
+#: import Circle widgets.circles.Circle
+#: import MyTextField widgets.field.MyTextField
+#: import IconButton widgets.button.IconButton
+#: import FlatButton widgets.button.FlatButton
+#: import RoundButton widgets.button.RoundButton
+# : import RoundImage widgets.img.RoundImage
+
+<Items>
+    text: root.text
+
+    IconLeftWidget:
+        icon: root.icon
+
+
+<AddExpenseScreen>
+    md_bg_color: app.colors.secondary
+    Text:
+        text: "What expenses have you incurred today?"
+        font_size: app.fonts.size.h1
+        font_name: app.fonts.heading
+        pos_hint: {'x': 0.12,'center_y': 0.79}
+        shorten: False
+        size_hint_x: .85
+        text_color: app.colors.white
+    MDFloatLayout:
+        md_bg_color: app.colors.white
+        size_hint_y: .6
+        radius: [40,40,0,0]
+    MyTextField:
+        id: product
+        hint_text: "product/service"
+        pos_hint: {'center_x': 0.5,'center_y': 0.49}
+        # icon_right: ""
+        active_line: True
+        mode: "line"
+        line_color_normal: app.colors.orange
+        line_color_focus: app.colors.secondary
+    MyTextField:
+        id: price
+        hint_text: "price"
+        pos_hint: {'center_x': 0.5,'center_y': 0.39}
+        # icon_right: "cash"
+        active_line: True
+        mode: "line"
+        line_color_normal: app.colors.orange
+        line_color_focus: app.colors.secondary
+        on_text: root.format(self.text)
+    MyTextField:
+        id: category
+        hint_text: "category"
+        pos_hint: {'center_x': 0.5,'center_y': 0.29}
+        # icon_right: ""
+        active_line: True
+        mode: "line"
+        line_color_normal: app.colors.orange
+        line_color_focus: app.colors.secondary
+        on_focus: root.categories(category)
+    RoundButton:
+        id: btn
+        text: "save"
+        md_bg_color:app.colors.secondary
+        text_color: app.colors.white
+        font_name: app.fonts.heading
+        font_size: app.fonts.size.h3
+        size_hint_y: .07
+        pos_hint: {'center_x': 0.5,'center_y': 0.15}
+        on_press:
+            app.expense_loader(product.text, price.text, category.text)
+            # app.save_expense(product.text, price.text, category.text)
+            # app.change_screen("home")
+    IconButton:
+        icon: "arrow-left"
+        icon_color: app.colors.white
+        font_size: app.fonts.size.icon
+        pos_hint: {'top': 1}
+        on_press: app.change_screen("home")
