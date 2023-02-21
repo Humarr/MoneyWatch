@@ -15,3 +15,4 @@ After these, run the main.py file.
 
 You can also download the android apk file from the apk folder.
 
+show.png
