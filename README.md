@@ -15,4 +15,13 @@ After these, run the main.py file.
 
 You can also download the android apk file from the apk folder.
 
-show.png
+
+![Image](show.png)
+![Image](add_expense1.png)
+![Image](budget.png)
+![Image](home1.png)
+![Image](home2.png)
+![Image](home3.png)
+![Image](home4.png)
+![Image](add_expense2.png)
+![Image](moneywatch.png)
